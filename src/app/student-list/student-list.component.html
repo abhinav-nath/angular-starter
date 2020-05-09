@@ -1,0 +1,29 @@
+<table class="table table-hover">
+    <thead class="thead-dark">
+        <tr>
+            <th>S No.</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Favorite Subject</th>
+            <th>Grade</th>
+            <th>Fees Due</th>
+            <th>Promoted?</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let student of students; let i = index" [ngClass]="{'highlight': student.grade < 4.5}">
+            <td>{{ i+1 }}</td>
+            <td>{{ student.firstName }}</td>
+            <td>{{ student.lastName }}</td>
+            <td>{{ student.email }}</td>
+            <td>{{ student.favoriteSubject }}</td>
+            <td>{{ student.grade }}</td>
+            <td>{{ student.feesDue | currency: "INR"}}</td>
+            <td>
+                <div *ngIf="student.grade >= 4.5; else myElseBlock">Yes</div>
+                <ng-template #myElseBlock><span style="color: red;">No</span></ng-template>
+            </td>
+        </tr>
+    </tbody>
+</table>
